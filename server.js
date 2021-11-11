@@ -30,8 +30,7 @@ app.get("/api/:date?", (req, res) => {
     if (!req.params.date) date = new Date(Date.now());
     else if (+req.params.date) date = new Date(+req.params.date);
     else date = new Date(req.params.date);
-    console.log(date);
-    if (date == true && date instanceof Date) res.json({ unix: Math.trunc(date.getTime() / 1000), utc: date.toUTCString() });
+    if (date.toString() !== "Invalid Date" && date instanceof Date) res.json({ unix: Math.trunc(date.getTime() / 1000), utc: date.toUTCString() });
     else res.json({ error: "Invalid Date" });
 });
 
