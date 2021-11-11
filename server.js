@@ -26,11 +26,10 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/:date?", (req, res) => {
     let date;
-    console.log(+req.params.date == true);
     if (!req.params.date) date = new Date(Date.now());
     else if (+req.params.date) date = new Date(+req.params.date);
     else date = new Date(req.params.date);
-    if (date.toString() !== "Invalid Date" && date instanceof Date) res.json({ unix: Math.trunc(date.getTime() / 1000), utc: date.toUTCString() });
+    if (date.toString() !== "Invalid Date" && date instanceof Date) res.json({ unix: Math.trunc(date.getTime()), utc: date.toUTCString() });
     else res.json({ error: "Invalid Date" });
 });
 
